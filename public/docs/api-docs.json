@@ -1,0 +1,4770 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Taklimakan cryptodata",
+    "version": "v0.0.1"
+  },
+  "paths": {
+    "/api/widget_cryptomarket": {
+      "get": {
+        "operationId": "listVersionsv2",
+        "summary": "Получить рынки для виджета",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 300 response",
+            "examples": {
+              "application/json": "{\n    \"versions\": [\n        {\n            \"status\": \"CURRENT\",\n            \"updated\": \"2011-01-21T11:33:21Z\",\n            \"id\": \"v2.0\",\n            \"links\": [\n                {\n                    \"href\": \"http://127.0.0.1:8774/v2/\",\n                    \"rel\": \"self\"\n                }\n            ]\n        },\n        {\n            \"status\": \"EXPERIMENTAL\",\n            \"updated\": \"2013-07-23T11:33:21Z\",\n            \"id\": \"v3.0\",\n            \"links\": [\n                {\n                    \"href\": \"http://127.0.0.1:8774/v3/\",\n                    \"rel\": \"self\"\n                }\n            ]\n        }\n    ]\n}"
+            }
+          }
+        }
+      }
+    },
+    "/api/charts/currency_cap": {
+      "get": {
+        "tags": [
+          "charts"
+        ],
+        "summary": "Get data for charts capitalization currency",
+        "description": "Data charts interval time from to",
+        "operationId": "getChartsDataById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "period_interval",
+            "in": "query",
+            "description": "Chart interval",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "hour",
+                "4hour",
+                "12hour",
+                "day",
+                "week",
+                "month"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "period_date_start",
+            "in": "query",
+            "description": "Date start",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "period_date_end",
+            "in": "query",
+            "description": "Date end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "object_amount",
+            "in": "query",
+            "description": "Amount object in response",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "Currency ticker",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "photoUrls"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "period_date_start": {
+                      "type": "string"
+                    },
+                    "period_date_end": {
+                      "type": "string"
+                    },
+                    "period_interval": {
+                      "type": "string"
+                    },
+                    "object_amount": {
+                      "type": "string"
+                    },
+                    "period_intervals": {
+                      "type": "object"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "xml": {
+                    "name": "",
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/charts/currency_cap_week": {
+      "get": {
+        "tags": [
+          "charts"
+        ],
+        "summary": "Get data for charts capitalization currency",
+        "description": "Data charts interval time from to",
+        "operationId": "getChartsDataById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "period_interval",
+            "in": "query",
+            "description": "Chart interval",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "hour",
+                "4hour",
+                "12hour",
+                "day",
+                "week",
+                "month"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "period_date_start",
+            "in": "query",
+            "description": "Date start",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "period_date_end",
+            "in": "query",
+            "description": "Date end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "object_amount",
+            "in": "query",
+            "description": "Amount object in response",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "Currency ticker",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "photoUrls"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "symbol": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "high_24": {
+                          "type": "number"
+                        },
+                        "low_24": {
+                          "type": "number"
+                        },
+                        "open_24": {
+                          "type": "number"
+                        },
+                        "percent_change_24": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "graph": {
+                      "type": "string",
+                      "time": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "xml": {
+                    "name": "",
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/global-metrics/charts": {
+      "get": {
+        "tags": [
+          "global-metrics"
+        ],
+        "summary": "Get data for charts global metrics",
+        "description": "Data charts global market capitalization or BTC dominance",
+        "operationId": "getChartsData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "period_interval",
+            "in": "query",
+            "description": "Time interval",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "minute",
+                "hour",
+                "day",
+                "week"
+              ]
+            }
+          },
+          {
+            "name": "chart_type",
+            "in": "query",
+            "description": "Time interval",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "market_cap",
+                "btc_dominance"
+              ]
+            }
+          },
+          {
+            "name": "period_date_start",
+            "in": "query",
+            "description": "Date start",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "period_date_end",
+            "in": "query",
+            "description": "Date end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "object_amount",
+            "in": "query",
+            "description": "Amount object in response",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "photoUrls"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "period_date_end": {
+                      "type": "string"
+                    },
+                    "period_date_start": {
+                      "type": "string"
+                    },
+                    "period_interval": {
+                      "type": "string"
+                    },
+                    "object_amount": {
+                      "type": "number"
+                    },
+                    "chart_type": {
+                      "type": "string"
+                    },
+                    "chart_types": {
+                      "type": "array",
+                      "xml": {
+                        "name": "",
+                        "wrapped": true
+                      },
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "period_intervals": {
+                      "type": "array",
+                      "xml": {
+                        "name": "",
+                        "wrapped": true
+                      },
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "xml": {
+                    "name": "",
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/top/tn_indexes/charts": {
+      "get": {
+        "tags": [
+          "top"
+        ],
+        "summary": "Get data for charts TN index",
+        "description": "Data charts interval time from to",
+        "operationId": "getCharts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Index type",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "tn10",
+                "tn50",
+                "tn100",
+                "tn200"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "period_date_start",
+            "in": "query",
+            "description": "Date start",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "period_date_end",
+            "in": "query",
+            "description": "Date end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "object_amount",
+            "in": "query",
+            "description": "Amount object in response",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "photoUrls"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "period_date_end": {
+                      "type": "string"
+                    },
+                    "period_interval": {
+                      "type": "string"
+                    },
+                    "object_amount": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "xml": {
+                    "name": "",
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/top/tn_indexes/get": {
+      "get": {
+        "tags": [
+          "top"
+        ],
+        "summary": "Get list tn indexes",
+        "description": "list tn indexes with coin list",
+        "operationId": "getIndexes",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": null,
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "photoUrls"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "xml": {
+                    "name": "",
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "default": {
+                        "type": "boolean"
+                      },
+                      "count_coins": {
+                        "type": "integer"
+                      },
+                      "coins": {
+                        "type": "array",
+                        "xml": {
+                          "name": "",
+                          "wrapped": true
+                        },
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/top/tn_indexes/new": {
+      "post": {
+        "tags": [
+          "top"
+        ],
+        "summary": "new index",
+        "description": "Create new index",
+        "operationId": "newIndex",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Index name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "coin_list",
+            "in": "query",
+            "description": "List coins",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "default",
+            "in": "query",
+            "description": "Default or custom index",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "photoUrls"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "coin_list": {
+                      "type": "string"
+                    },
+                    "default": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/top/tn_indexes/change": {
+      "post": {
+        "tags": [
+          "top"
+        ],
+        "summary": "Change index",
+        "description": "Change index",
+        "operationId": "changeIndex",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Index name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "coin_list",
+            "in": "query",
+            "description": "List coins",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "default",
+            "in": "query",
+            "description": "Default or custom index",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "photoUrls"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "coin_list": {
+                      "type": "string"
+                    },
+                    "default": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/top/tn_indexes/delete": {
+      "post": {
+        "tags": [
+          "top"
+        ],
+        "summary": "delete index",
+        "description": "delete index",
+        "operationId": "deleteIndex",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Index name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "photoUrls"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/global-metrics/latest": {
+      "get": {
+        "tags": [
+          "global-metrics"
+        ],
+        "summary": "Get latest data for market",
+        "description": "Data charts global market capitalization or BTC dominance",
+        "operationId": "getChartsData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "convert",
+            "in": "query",
+            "description": "What currency conversion, default: USD",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "photoUrls"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "convert": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "active_cryptocurrencies": {
+                      "type": "number"
+                    },
+                    "active_market_pairs": {
+                      "type": "number"
+                    },
+                    "active_exchanges": {
+                      "type": "number"
+                    },
+                    "eth_dominance": {
+                      "type": "number"
+                    },
+                    "btc_dominance": {
+                      "type": "number"
+                    },
+                    "total_market_cap": {
+                      "type": "number"
+                    },
+                    "total_volume_24h": {
+                      "type": "number"
+                    },
+                    "btc_dominance_dollar": {
+                      "type": "number"
+                    },
+                    "eth_dominance_dollar": {
+                      "type": "number"
+                    },
+                    "other_dominance": {
+                      "type": "number"
+                    },
+                    "other_dominance_dollar": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/v1/currencies/autocomplete": {
+      "get": {
+        "tags": [
+          "v1"
+        ],
+        "summary": "Get list cryptocurrencies",
+        "description": "List cryptocurrencies",
+        "operationId": "getCryptocurrencies",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "photoUrls"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "pagination": {
+                  "type": "object",
+                  "properties": {
+                    "page": {
+                      "type": "number"
+                    },
+                    "per_page": {
+                      "type": "number"
+                    },
+                    "skip": {
+                      "type": "number"
+                    },
+                    "total": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "limit": {
+                      "type": "number"
+                    },
+                    "match_string": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "symbol": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/v2/coin/config": {
+      "get": {
+        "tags": [
+          "v2"
+        ],
+        "summary": "Coin config ",
+        "description": "Coin config",
+        "operationId": "getChartsData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "": {
+                  "type": "object",
+                  "properties": {
+                    "supported_resolutions": {
+                      "type": "array"
+                    },
+                    "supports_group_request": {
+                      "type": "boolean"
+                    },
+                    "supports_marks": {
+                      "type": "boolean"
+                    },
+                    "supports_search": {
+                      "type": "boolean"
+                    },
+                    "supports_time": {
+                      "type": "boolean"
+                    },
+                    "symbols_types": {
+                      "type": "array",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "exchanges": {
+                      "type": "array",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "desc": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/coin/history": {
+      "get": {
+        "tags": [
+          "v2"
+        ],
+        "summary": "Coin history ",
+        "description": "Coin history",
+        "operationId": "getChartsData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "What currency symbol",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resolution",
+            "in": "query",
+            "description": "What currency resolution",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "What currency from date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "What currency to date",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "": {
+                  "type": "object",
+                  "properties": {
+                    "c": {
+                      "type": "array"
+                    },
+                    "h": {
+                      "type": "array"
+                    },
+                    "l": {
+                      "type": "array"
+                    },
+                    "o": {
+                      "type": "array"
+                    },
+                    "t": {
+                      "type": "array"
+                    },
+                    "v": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/coin/symbols": {
+      "get": {
+        "tags": [
+          "v2"
+        ],
+        "summary": "Coin symbols ",
+        "description": "Coin symbols",
+        "operationId": "getChartsData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "What currency symbol",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "exchange-listed": {
+                      "type": "string"
+                    },
+                    "exchange-traded": {
+                      "type": "string"
+                    },
+                    "has_intraday": {
+                      "type": "boolean"
+                    },
+                    "has_no_volume": {
+                      "type": "boolean"
+                    },
+                    "minmovement": {
+                      "type": "number"
+                    },
+                    "minmovement2": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "pointvalue": {
+                      "type": "number"
+                    },
+                    "pricescale": {
+                      "type": "number"
+                    },
+                    "session": {
+                      "type": "string"
+                    },
+                    "ticker": {
+                      "type": "string"
+                    },
+                    "timezone": {
+                      "type": "string"
+                    },
+                    "has_daily": {
+                      "type": "boolean"
+                    },
+                    "has_weekly_and_monthly": {
+                      "type": "boolean"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "supported_resolutions": {
+                      "type": "array"
+                    },
+                    "intraday_multipliers": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+  "/api/v2/coin/search": {
+    "get": {
+      "tags": [
+        "v2"
+      ],
+      "summary": "Get coin search",
+      "description": "Get coin search",
+      "operationId": "get coin search",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "Coin limit per page",
+          "required": false,
+          "type": "integer",
+          "default": 30
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "schema": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "status": {
+                "type": "object",
+                "properties": {
+                  "error_message": {
+                    "type": "string"
+                  },
+                  "error_code": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "filters": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "period_date_end": {
+                    "type": "string"
+                  },
+                  "period_interval": {
+                    "type": "string"
+                  },
+                  "object_amount": {
+                    "type": "string"
+                  }
+                }
+              },
+              "data": {
+                "type": "array",
+                "xml": {
+                  "name": "",
+                  "wrapped": true
+                },
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid request"
+        }
+      }
+    }
+  },
+  "/api/v2/coin/time": {
+    "get": {
+      "tags": [
+        "v2"
+      ],
+      "summary": "Get coin time",
+      "description": "Get coin time",
+      "operationId": "get coin time",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+      ],
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "schema": {
+            "type": "string",
+            "required": false
+          }
+        }
+      }
+    }
+  },
+    "/api/coin/cryptocurrency": {
+      "get": {
+        "tags": [
+          "coin"
+        ],
+        "summary": "Get list cryptocurrencies",
+        "description": "List cryptocurrencies",
+        "operationId": "getCryptocurrencies",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Pagination page",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Pagination per_page",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting by",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "market_cap",
+                "name",
+                "date_added",
+                "circulating_supply",
+                "total_supply",
+                "max_supply",
+                "num_market_pairs",
+                "market_cap_order"
+              ]
+            }
+          },
+          {
+            "name": "sort_dir",
+            "in": "query",
+            "description": "Sorting by",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "desc",
+                "asc"
+              ]
+            }
+          },
+          {
+            "name": "autocomplete",
+            "in": "query",
+            "description": "Autocomplete by ticker and name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "market_cap",
+            "in": "query",
+            "description": "Market capitalization filter",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "1BP",
+                "1B",
+                "100M",
+                "10M",
+                "1M",
+                "100K"
+              ]
+            }
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "description": "Price filter",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "100P",
+                "100",
+                "1",
+                "0.0001"
+              ]
+            }
+          },
+          {
+            "name": "volume24",
+            "in": "query",
+            "description": "Volume24 filter",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "10MP",
+                "10M",
+                "1M",
+                "100K",
+                "10K"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "photoUrls"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "pagination": {
+                  "type": "object",
+                  "properties": {
+                    "page": {
+                      "type": "number"
+                    },
+                    "per_page": {
+                      "type": "number"
+                    },
+                    "skip": {
+                      "type": "number"
+                    },
+                    "total": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "limit": {
+                      "type": "number"
+                    },
+                    "sort": {
+                      "type": "string"
+                    },
+                    "sortDir": {
+                      "type": "string"
+                    },
+                    "autocomplete": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "symbol": {
+                        "type": "string"
+                      },
+                      "circulating_supply": {
+                        "type": "number"
+                      },
+                      "logo": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "number"
+                      },
+                      "volume_24h": {
+                        "type": "number"
+                      },
+                      "percent_change_24h": {
+                        "type": "number"
+                      },
+                      "percent_change_1h": {
+                        "type": "number"
+                      },
+                      "percent_change_7d": {
+                        "type": "number"
+                      },
+                      "market_cap": {
+                        "type": "number"
+                      },
+                      "rank": {
+                        "type": "number"
+                      },
+                      "increase": {
+                        "type": "number"
+                      },
+                      "Wx": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/coin/market_pairs": {
+      "get": {
+        "tags": [
+          "coin"
+        ],
+        "summary": "Get pairs cryptocurrencies",
+        "description": "pairs cryptocurrencies",
+        "operationId": "getCryptocurrencies",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Coin id",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Coin symbol",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": " start",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": " limit",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "cryptocurrency_id": {
+                        "type": "number"
+                      },
+                      "id": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "symbol": {
+                        "type": "string"
+                      },
+                      "num_market_pairs": {
+                        "type": "number"
+                      },
+                      "market_pairs": {
+                        "type": "array"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/coin/map": {
+      "get": {
+        "tags": [
+          "coin"
+        ],
+        "summary": "Get map cryptocurrencies",
+        "description": "map cryptocurrencies",
+        "operationId": "getCryptocurrencies",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "cryptocurrencies_count": {
+                  "type": "number"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "symbol": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/coin/symbols": {
+      "get": {
+        "tags": [
+          "coin"
+        ],
+        "summary": "Get symbols cryptocurrencies",
+        "description": "symbols cryptocurrencies",
+        "operationId": "getCryptocurrencies",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Coin symbol",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "cryptocurrencies_count": {
+                  "type": "number"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": "string"
+                      },
+                      "exchange-listed": {
+                        "type": "string"
+                      },
+                      "exchange-traded": {
+                        "type": "string"
+                      },
+                      "has_intraday": {
+                        "type": "boolean"
+                      },
+                      "has_no_volume": {
+                        "type": "boolean"
+                      },
+                      "minmovement": {
+                        "type": "number"
+                      },
+                      "minmovement2": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "pointvalue": {
+                        "type": "number"
+                      },
+                      "pricescale": {
+                        "type": "number"
+                      },
+                      "session": {
+                        "type": "string"
+                      },
+                      "ticker": {
+                        "type": "string"
+                      },
+                      "timezone": {
+                        "type": "string"
+                      },
+                      "has_daily": {
+                        "type": "boolean"
+                      },
+                      "has_weekly_and_monthly": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "supported_resolutions": {
+                        "type": "array"
+                      },
+                      "intraday_multipliers": {
+                        "type": "array"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/coin/ticker": {
+      "get": {
+        "tags": [
+          "coin"
+        ],
+        "summary": "Get ticker data ",
+        "description": "Data ticker",
+        "operationId": "getChartsData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "top10_crypto": {
+                  "type": "object",
+                  "properties": {
+                    "top_number": {
+                      "type": "number"
+                    },
+                    "symbol": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "logo": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "number"
+                    },
+                    "price_symbol": {
+                      "type": "string"
+                    },
+                    "percent_change_24h": {
+                      "type": "number"
+                    },
+                    "percent_change_24h_symbol": {
+                      "type": "string"
+                    },
+                    "increase": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "ticker": {
+                  "type": "array",
+                  "properties": {
+                    "price_name": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "number"
+                    },
+                    "price_symbol": {
+                      "type": "string"
+                    },
+                    "price_human": {
+                      "type": "string"
+                    },
+                    "change": {
+                      "type": "number"
+                    },
+                    "change_symbol": {
+                      "type": "string"
+                    },
+                    "increase": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      }
+    },
+    "/api/coin/all_pairs": {
+      "get": {
+        "tags": [
+          "coin"
+        ],
+        "summary": "Get all_pairs data ",
+        "description": "Data all_pairs",
+        "operationId": "getChartsData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "symbol": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "coin1_symbol": {
+                      "type": "string"
+                    },
+                    "coin2_symbol": {
+                      "type": "string"
+                    },
+                    "coin1_name": {
+                      "type": "string"
+                    },
+                    "coin2_name": {
+                      "type": "string"
+                    },
+                    "credit_count": {
+                      "type": "number"
+                    },
+                    "request_count": {
+                      "type": "number"
+                    },
+                    "allowed": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      }
+    },
+    "/api/coin/favorite": {
+      "get": {
+        "tags": [
+          "coin"
+        ],
+        "summary": "Get favorite data ",
+        "description": "Data favorite",
+        "operationId": "getChartsData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Coin symbol",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "pagination": {
+                  "type": "object",
+                  "properties": {
+                    "page": {
+                      "type": "number"
+                    },
+                    "perPage": {
+                      "type": "number"
+                    },
+                    "skip": {
+                      "type": "number"
+                    },
+                    "total": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "coins": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "properties": {
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      }
+    },
+    "/api/coin/top_market_pairs": {
+      "get": {
+        "tags": [
+          "coin"
+        ],
+        "summary": "Get favorite data ",
+        "description": "Data favorite",
+        "operationId": "getChartsData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Coin symbol",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "pagination": {
+                  "type": "object",
+                  "properties": {
+                    "page": {
+                      "type": "number"
+                    },
+                    "perPage": {
+                      "type": "number"
+                    },
+                    "skip": {
+                      "type": "number"
+                    },
+                    "total": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "symbol": {
+                      "type": "string"
+                    },
+                    "cryptocurrency_id": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "properties": {
+                    "rank": {
+                      "type": "number"
+                    },
+                    "logo": {
+                      "type": "string"
+                    },
+                    "exchange_name": {
+                      "type": "string"
+                    },
+                    "pair_name": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "number"
+                    },
+                    "volume_24": {
+                      "type": "number"
+                    },
+                    "percent_volume_24": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      }
+    },
+    "/api/coin/time": {
+      "get": {
+        "tags": [
+          "coin"
+        ],
+        "summary": "Get coin time",
+        "description": "Get coin time",
+        "operationId": "get coin time",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "required": false
+            }
+          }
+        }
+      }
+    },
+    "/api/coin/currency": {
+      "get": {
+        "tags": [
+          "coin"
+        ],
+        "summary": "Get currency data ",
+        "description": "Data currency",
+        "operationId": "getChartsData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "What currency symbol",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "What crypto id",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "cryptocurrency_id": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "symbol": {
+                      "type": "string"
+                    },
+                    "circulating_supply": {
+                      "type": "number"
+                    },
+                    "max_supply": {
+                      "type": "number"
+                    },
+                    "num_market_pairs": {
+                      "type": "number"
+                    },
+                    "total_supply": {
+                      "type": "number"
+                    },
+                    "logo": {
+                      "type": "string"
+                    },
+                    "percent_changes_weekly": {
+                      "type": "number"
+                    },
+                    "percent_changes_monthly": {
+                      "type": "number"
+                    },
+                    "percent_changes_three_month": {
+                      "type": "number"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "object",
+                      "website": {
+                        "type": "array"
+                      },
+                      "twitter": {
+                        "type": "array"
+                      },
+                      "reddit": {
+                        "type": "array"
+                      },
+                      "message_board": {
+                        "type": "array"
+                      },
+                      "announcement": {
+                        "type": "array"
+                      },
+                      "chat": {
+                        "type": "array"
+                      },
+                      "explorer": {
+                        "type": "array"
+                      },
+                      "source_code": {
+                        "type": "array"
+                      }
+                    },
+                    "circulating_supply_percent": {
+                      "type": "number"
+                    },
+                    "market_cap": {
+                      "type": "number"
+                    },
+                    "usd_price": {
+                      "type": "number"
+                    },
+                    "volume_24": {
+                      "type": "number"
+                    },
+                    "percent_change_price": {
+                      "type": "number"
+                    },
+                    "btc_volume_24": {
+                      "type": "number"
+                    },
+                    "btc_market_cap": {
+                      "type": "number"
+                    },
+                    "btc_percent_change": {
+                      "type": "number"
+                    },
+                    "rank": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "cryptocurrency_id": {
+                      "type": "number"
+                    },
+                    "symbol": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      }
+    },
+      "/api/coefficients/global_charts": {
+        "get": {
+          "tags": [
+            "coefficients"
+          ],
+          "summary": "Get Annualized Return",
+          "description": "Get Annualized Return",
+          "operationId": "getCryptocurrencies",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "period_date_start",
+              "in": "query",
+              "description": "Start date",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "period_date_end",
+              "in": "query",
+              "description": "End date",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "chart_type",
+              "in": "query",
+              "description": "Chart type",
+              "required": false,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "return"
+                ]
+              }
+            },
+            {
+              "name": "period_interval",
+              "in": "query",
+              "description": "Interval",
+              "required": false,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ]
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "photoUrls"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/coefficients/charts": {
+        "get": {
+          "tags": [
+            "coefficients"
+          ],
+          "summary": "Get charts data",
+          "description": "Get charts data",
+          "operationId": "getCryptocurrencies",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "symbol",
+              "in": "query",
+              "description": "coin symbol",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "period_date_start",
+              "in": "query",
+              "description": "Start date",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "period_date_end",
+              "in": "query",
+              "description": "End date",
+              "required": false,
+              "type": "string"
+            },
+
+            {
+              "name": "period_interval",
+              "in": "query",
+              "description": "Interval",
+              "required": false,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ]
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "photoUrls"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "symbol": {
+                        "type": "string"
+                      },
+                      "period_date_start": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "chart_type": {
+                        "type": "string"
+                      },
+                      "chart_types": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "period_intervals": {
+                    "type": "array"
+                  },
+                  "zoom": {
+                    "type": "array",
+                    "key": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "symbol": {
+                    "type": "string"
+                  },
+                  "first_date_data": {
+                    "type": "string"
+                  },
+                  "end_date_data": {
+                    "type": "string"
+                  },
+                  "info": {
+                    "type": "object",
+                    "name": {
+                      "type": "string"
+                    },
+                    "period": {
+                      "type": "string"
+                    },
+                    "symbol": {
+                      "type": "string"
+                    },
+                    "interval": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/coefficients/annualized_charts": {
+        "get": {
+          "tags": [
+            "coefficients"
+          ],
+          "summary": "Get annualized_charts data",
+          "description": "Get annualized_charts data",
+          "operationId": "getCryptocurrencies",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "symbol",
+              "in": "query",
+              "description": "coin symbol",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "period_date_start",
+              "in": "query",
+              "description": "Start date",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "period_date_end",
+              "in": "query",
+              "description": "End date",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "chart_type",
+              "in": "query",
+              "description": "Chart type",
+              "required": false,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "return"
+                ]
+              }
+            },
+            {
+              "name": "period_interval",
+              "in": "query",
+              "description": "Interval",
+              "required": true,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly"
+                ]
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "photoUrls"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/exchange/listings": {
+        "get": {
+          "tags": [
+            "exchange"
+          ],
+          "summary": "Get exchanged list",
+          "description": "Get exchanged list",
+          "operationId": "get exchanged list",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Coin limit per page",
+              "required": true,
+              "type": "integer",
+              "default": 100
+            },
+            {
+              "name": "sort",
+              "in": "query",
+              "description": "Coin sort",
+              "required": false,
+              "type": "string",
+              "default": "volume_24h"
+            },
+            {
+              "name": "sort_dir",
+              "in": "query",
+              "description": "Coin sort dir",
+              "required": false,
+              "type": "string",
+              "default": "desc",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "autocomplete",
+              "in": "query",
+              "description": "autocomplete",
+              "required": false,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "photoUrls"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+    "/api/exchange/map": {
+      "get": {
+        "tags": [
+          "exchange"
+        ],
+        "summary": "Get exchanged list",
+        "description": "Get exchanged list",
+        "operationId": "get exchanged list",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "photoUrls"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "exchanges_count": {
+                  "type":"number"
+                },
+                "data": {
+                  "type": "array",
+                  "name": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/statistic/requests": {
+      "get": {
+        "tags": [
+          "statistic"
+        ],
+        "summary": "Get statistic list",
+        "description": "Get statistic list",
+        "operationId": "get statistic list",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "photoUrls"
+              ],
+              "properties": {
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "": {
+                  "type": "array",
+                  "api_coin_request": {
+                    "type": "string"
+                  },
+                  "credit_count": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+      "/api/exchange/market_pairs": {
+        "post": {
+          "tags": [
+            "exchange"
+          ],
+          "summary": "Get exchanged market_pairs",
+          "description": "Get exchanged market_pairs",
+          "operationId": "get exchanged market_pairs",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "symbol",
+              "in": "query",
+              "description": "Coin symbol",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "Coin page",
+              "required": false,
+              "type": "integer",
+              "default": "1"
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Coin limit dir",
+              "required": false,
+              "type": "integer",
+              "default": "10"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "photoUrls"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/sharpe/config": {
+        "get": {
+          "tags": [
+            "sharp"
+          ],
+          "summary": "Get sharpe list",
+          "description": "Get sharpe list",
+          "operationId": "get sharpe list",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                  "supported_resolutions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "W",
+                        "M",
+                        "Y"
+                      ]
+                    }
+                  },
+                  "supports_group_request": {
+                    "type": "boolean"
+                  },
+                  "supports_marks": {
+                    "type": "boolean"
+                  },
+                  "supports_search": {
+                    "type": "boolean"
+                  },
+                  "supports_time": {
+                    "type": "boolean"
+                  },
+                  "symbols_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/sharpe/time": {
+        "get": {
+          "tags": [
+            "sharp"
+          ],
+          "summary": "Get sharpe time",
+          "description": "Get sharpe time",
+          "operationId": "get sharpe time",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "string",
+                "required": false
+              }
+            }
+          }
+        }
+      },
+      "/api/v2/sharpe/symbols": {
+        "get": {
+          "tags": [
+            "sharp"
+          ],
+          "summary": "Get sharp symbols",
+          "description": "Get sharp symbols",
+          "operationId": "get sharp symbols",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "symbol",
+              "in": "query",
+              "description": "Coin symbol",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/sharpe/search": {
+        "get": {
+          "tags": [
+            "sharp"
+          ],
+          "summary": "Get sharp search",
+          "description": "Get sharp search",
+          "operationId": "get sharp search",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Coin limit per page",
+              "required": false,
+              "type": "integer",
+              "default": 30
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/sharpe/history": {
+        "get": {
+          "tags": [
+            "sharp"
+          ],
+          "summary": "Get sharp history",
+          "description": "Get sharp history",
+          "operationId": "get sharp history",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "symbol",
+              "in": "query",
+              "description": "Coin symbol ",
+              "required": true,
+              "type": "string",
+              "default": null
+            },
+            {
+              "name": "convert",
+              "in": "query",
+              "description": "Coin convert ",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/volatility/config": {
+        "get": {
+          "tags": [
+            "volatility"
+          ],
+          "summary": "Get volatility list",
+          "description": "Get volatility list",
+          "operationId": "get volatility list",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                  "supported_resolutions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "W",
+                        "M",
+                        "Y"
+                      ]
+                    }
+                  },
+                  "supports_group_request": {
+                    "type": "boolean"
+                  },
+                  "supports_marks": {
+                    "type": "boolean"
+                  },
+                  "supports_search": {
+                    "type": "boolean"
+                  },
+                  "supports_time": {
+                    "type": "boolean"
+                  },
+                  "symbols_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/volatility/time": {
+        "get": {
+          "tags": [
+            "volatility"
+          ],
+          "summary": "Get volatility time",
+          "description": "Get volatility time",
+          "operationId": "get volatility time",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "string",
+                "required": false
+              }
+            }
+          }
+        }
+      },
+      "/api/v2/volatility/symbols": {
+        "get": {
+          "tags": [
+            "volatility"
+          ],
+          "summary": "Get volatility symbols",
+          "description": "Get volatility symbols",
+          "operationId": "get volatility symbols",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "symbol",
+              "in": "query",
+              "description": "Coin symbol",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/volatility/search": {
+        "get": {
+          "tags": [
+            "volatility"
+          ],
+          "summary": "Get volatility search",
+          "description": "Get volatility search",
+          "operationId": "get volatility search",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Coin limit per page",
+              "required": false,
+              "type": "integer",
+              "default": 30
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/volatility/history": {
+        "get": {
+          "tags": [
+            "volatility"
+          ],
+          "summary": "Get volatility history",
+          "description": "Get volatility history",
+          "operationId": "get volatility history",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "symbol",
+              "in": "query",
+              "description": "Coin symbol ",
+              "required": true,
+              "type": "string",
+              "default": null
+            },
+            {
+              "name": "convert",
+              "in": "query",
+              "description": "Coin convert ",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/alpha/config": {
+        "get": {
+          "tags": [
+            "alpha"
+          ],
+          "summary": "Get alpha list",
+          "description": "Get alpha list",
+          "operationId": "get alpha list",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                  "supported_resolutions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "W",
+                        "M",
+                        "Y"
+                      ]
+                    }
+                  },
+                  "supports_group_request": {
+                    "type": "boolean"
+                  },
+                  "supports_marks": {
+                    "type": "boolean"
+                  },
+                  "supports_search": {
+                    "type": "boolean"
+                  },
+                  "supports_time": {
+                    "type": "boolean"
+                  },
+                  "symbols_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/alpha/time": {
+        "get": {
+          "tags": [
+            "alpha"
+          ],
+          "summary": "Get alpha time",
+          "description": "Get alpha time",
+          "operationId": "get alpha time",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "string",
+                "required": false
+              }
+            }
+          }
+        }
+      },
+      "/api/v2/alpha/symbols": {
+        "get": {
+          "tags": [
+            "alpha"
+          ],
+          "summary": "Get alpha symbols",
+          "description": "Get alpha symbols",
+          "operationId": "get alpha symbols",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "symbol",
+              "in": "query",
+              "description": "Coin symbol",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/alpha/search": {
+        "get": {
+          "tags": [
+            "alpha"
+          ],
+          "summary": "Get alpha search",
+          "description": "Get alpha search",
+          "operationId": "get alpha search",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Coin limit per page",
+              "required": false,
+              "type": "integer",
+              "default": 30
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/alpha/history": {
+        "get": {
+          "tags": [
+            "alpha"
+          ],
+          "summary": "Get alpha history",
+          "description": "Get alpha history",
+          "operationId": "get alpha history",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "symbol",
+              "in": "query",
+              "description": "Coin symbol ",
+              "required": true,
+              "type": "string",
+              "default": null
+            },
+            {
+              "name": "convert",
+              "in": "query",
+              "description": "Coin convert ",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/beta/config": {
+        "get": {
+          "tags": [
+            "beta"
+          ],
+          "summary": "Get beta list",
+          "description": "Get beta list",
+          "operationId": "get beta list",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                  "supported_resolutions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "W",
+                        "M",
+                        "Y"
+                      ]
+                    }
+                  },
+                  "supports_group_request": {
+                    "type": "boolean"
+                  },
+                  "supports_marks": {
+                    "type": "boolean"
+                  },
+                  "supports_search": {
+                    "type": "boolean"
+                  },
+                  "supports_time": {
+                    "type": "boolean"
+                  },
+                  "symbols_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/beta/time": {
+        "get": {
+          "tags": [
+            "beta"
+          ],
+          "summary": "Get beta time",
+          "description": "Get beta time",
+          "operationId": "get beta time",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "string",
+                "required": false
+              }
+            }
+          }
+        }
+      },
+      "/api/v2/beta/symbols": {
+        "get": {
+          "tags": [
+            "beta"
+          ],
+          "summary": "Get beta symbols",
+          "description": "Get beta symbols",
+          "operationId": "get beta symbols",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "symbol",
+              "in": "query",
+              "description": "Coin symbol",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/beta/search": {
+        "get": {
+          "tags": [
+            "beta"
+          ],
+          "summary": "Get beta search",
+          "description": "Get beta search",
+          "operationId": "get beta search",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Coin limit per page",
+              "required": false,
+              "type": "integer",
+              "default": 30
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/beta/history": {
+        "get": {
+          "tags": [
+            "beta"
+          ],
+          "summary": "Get beta history",
+          "description": "Get beta history",
+          "operationId": "get beta history",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "symbol",
+              "in": "query",
+              "description": "Coin symbol ",
+              "required": true,
+              "type": "string",
+              "default": null
+            },
+            {
+              "name": "convert",
+              "in": "query",
+              "description": "Coin convert ",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/rating/config": {
+        "get": {
+          "tags": [
+            "rating"
+          ],
+          "summary": "Get rating list",
+          "description": "Get rating list",
+          "operationId": "get rating list",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                  "supported_resolutions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "W",
+                        "M",
+                        "Y"
+                      ]
+                    }
+                  },
+                  "supports_group_request": {
+                    "type": "boolean"
+                  },
+                  "supports_marks": {
+                    "type": "boolean"
+                  },
+                  "supports_search": {
+                    "type": "boolean"
+                  },
+                  "supports_time": {
+                    "type": "boolean"
+                  },
+                  "symbols_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/rating/time": {
+        "get": {
+          "tags": [
+            "rating"
+          ],
+          "summary": "Get rating time",
+          "description": "Get rating time",
+          "operationId": "get rating time",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "string",
+                "required": false
+              }
+            }
+          }
+        }
+      },
+      "/api/v2/rating/symbols": {
+        "get": {
+          "tags": [
+            "rating"
+          ],
+          "summary": "Get rating symbols",
+          "description": "Get rating symbols",
+          "operationId": "get rating symbols",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "symbol",
+              "in": "query",
+              "description": "Coin symbol",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/rating/search": {
+        "get": {
+          "tags": [
+            "rating"
+          ],
+          "summary": "Get rating search",
+          "description": "Get rating search",
+          "operationId": "get rating search",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Coin limit per page",
+              "required": false,
+              "type": "integer",
+              "default": 30
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+      "/api/v2/rating/history": {
+        "get": {
+          "tags": [
+            "rating"
+          ],
+          "summary": "Get rating history",
+          "description": "Get rating history",
+          "operationId": "get rating history",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "symbol",
+              "in": "query",
+              "description": "Coin symbol ",
+              "required": true,
+              "type": "string",
+              "default": null
+            },
+            {
+              "name": "convert",
+              "in": "query",
+              "description": "Coin convert ",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "error_code": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "period_date_end": {
+                        "type": "string"
+                      },
+                      "period_interval": {
+                        "type": "string"
+                      },
+                      "object_amount": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "array",
+                    "xml": {
+                      "name": "",
+                      "wrapped": true
+                    },
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+      },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      },
+
+    "consumes": [
+      "application/json"
+    ]
+  }
+
+
